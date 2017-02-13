@@ -27,26 +27,18 @@ public class HTMLParserExample1 {
         palavrasReservadas.add("Lista");
         palavrasReservadas.add("Espera");
         palavrasReservadas.add("espera");
-        palavrasReservadas.add("Edital");
         
         EstruturaAcessoHTML estrutura = new EstruturaAcessoHTML();
         estrutura.start();
         EstruturaAcessoHTML estrutura2 = new EstruturaAcessoHTML();
         estrutura2.start();
         
-        Email e = new Email();
-        try {
-            e.sendEmail("itamarbernardo2013@gmail.com", "Itamar", "Alerta da UFAL: Possível convocação da lista de espera", "Olá Itamar,"
-                    + " nosso sistema verificou uma possível divulgação da lista de espera nos sites requisitados. Por favor, dê uma olhada nesses links:");
-        } catch (EmailException ex) {
-            Logger.getLogger(HTMLParserExample1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+              
         while(true){
             estrutura.acesso("http://www.ufal.edu.br/", palavrasReservadas);
             estrutura2.acesso("http://www.copeve.ufal.br/", palavrasReservadas);
             try {
-                Thread.sleep(2500); //espera duas horas
+                Thread.sleep(7200000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(HTMLParserExample1.class.getName()).log(Level.SEVERE, null, ex);
             }

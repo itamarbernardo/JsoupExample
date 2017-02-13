@@ -8,7 +8,10 @@ package com.itamarbernardo.jsoupexample;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.apache.commons.mail.EmailException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,16 +21,18 @@ import org.jsoup.select.Elements;
  *
  * @author ANAFLAVIA
  */
-public class EstruturaAcessoHTML extends Thread implements Runnable{
+public class EstruturaAcessoHTML extends Thread implements Runnable {
 
     private String[] textoSeparado;
     private Document doc;
-    
+    private List<String> meusLiks = new ArrayList<>();
+    private String linksDoEmail = "";
+
     @Override
-    public void run(){
-        
+    public void run() {
+
     }
-    
+
     public void acesso(String url, List<String> palavrasReservadas) {
         try {
 
@@ -46,16 +51,31 @@ public class EstruturaAcessoHTML extends Thread implements Runnable{
                 System.out.println("\nlink : " + link.attr("href"));
                 System.out.println("text : " + link.text());
                 textoSeparado = link.text().split(" ");
-//                System.out.println(Arrays.toString(textoSeparado));
 
                 for (String t : textoSeparado) {
                     for (String p : palavrasReservadas) {
                         if (t.equals(p)) {
 
-                            JOptionPane.showMessageDialog(null, "Achei alguma coisa! " + link.attr("href") + "\nTexto: " + link.text());
-                            
+//                            JOptionPane.showMessageDialog(null, "Achei alguma coisa! " + link.attr("href") + "\nTexto: " + link.text());
+                            meusLiks.add(link.attr("href"));
+
                         }
                     }
+                }
+
+            }
+
+            if (meusLiks.size() != 0) {
+                for (String m : meusLiks) {
+                    linksDoEmail = "\n" + m + linksDoEmail;
+                }
+                Email e = new Email();
+                try {
+                    e.sendEmail("itamarbernardo2013@gmail.com", "Itamar", "Alerta da UFAL: Possível convocação da lista de espera", "Olá Itamar,"
+                            + " nosso sistema verificou uma possível divulgação da lista de espera nos sites requisitados. Por favor, dê"
+                            + " uma olhada nesses links:" + linksDoEmail);
+                } catch (EmailException ex) {
+                    Logger.getLogger(HTMLParserExample1.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
