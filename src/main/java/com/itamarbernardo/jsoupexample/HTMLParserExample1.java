@@ -33,12 +33,15 @@ public class HTMLParserExample1 {
         EstruturaAcessoHTML estrutura2 = new EstruturaAcessoHTML();
         estrutura2.start();
         
+        EstruturaAcessoHTML estrutura3 = new EstruturaAcessoHTML();
+        estrutura3.start();
               
         while(true){
             estrutura.acesso("http://www.ufal.edu.br/", palavrasReservadas);
             estrutura2.acesso("http://www.copeve.ufal.br/", palavrasReservadas);
+            estrutura3.acesso("http://processodeingresso.upe.pe.gov.br/", palavrasReservadas);
             try {
-                Thread.sleep(7200000);
+                Thread.sleep(2500); // Duas horas: 7200000
             } catch (InterruptedException ex) {
                 Logger.getLogger(HTMLParserExample1.class.getName()).log(Level.SEVERE, null, ex);
             }

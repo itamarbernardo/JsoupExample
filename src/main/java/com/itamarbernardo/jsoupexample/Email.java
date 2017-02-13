@@ -14,6 +14,10 @@ import org.apache.commons.mail.SimpleEmail;
  */
 public class Email {
 
+    public Email(){
+        
+    }
+    
     public void sendEmail(String destinatario, String nomeDest, String assunto, String msg) throws EmailException {
 
         SimpleEmail email = new SimpleEmail();

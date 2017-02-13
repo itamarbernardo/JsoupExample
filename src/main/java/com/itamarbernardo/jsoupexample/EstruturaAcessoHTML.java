@@ -25,9 +25,14 @@ public class EstruturaAcessoHTML extends Thread implements Runnable {
 
     private String[] textoSeparado;
     private Document doc;
-    private List<String> meusLiks = new ArrayList<>();
-    private String linksDoEmail = "";
+    private List<String> meusLiks;
+    private String linksDoEmail;
 
+    public EstruturaAcessoHTML(){
+        this.meusLiks = new ArrayList<>();
+        this.linksDoEmail = "";
+    }
+    
     @Override
     public void run() {
 
