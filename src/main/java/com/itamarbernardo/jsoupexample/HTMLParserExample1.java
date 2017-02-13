@@ -1,15 +1,18 @@
 package com.itamarbernardo.jsoupexample;
 
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class HTMLParserExample1 {
@@ -23,45 +26,21 @@ public class HTMLParserExample1 {
         palavrasReservadas.add("Lista");
         palavrasReservadas.add("Espera");
         palavrasReservadas.add("espera");
-        palavrasReservadas.add("SiSU");
-        palavrasReservadas.add("Portal");
-
-
-        String[] textoSeparado;
-        Document doc;
-        try {
-
-            // need http protocol
-            doc = Jsoup.connect("http://www.ufal.edu.br/").userAgent("Mozilla").get();
-
-            // get page title
-            String title = doc.title();
-            System.out.println("title : " + title);
-
-            // get all links
-            Elements links = doc.select("a[href]");
-            for (Element link : links) {
-
-                // get the value from href attribute
-                System.out.println("\nlink : " + link.attr("href"));
-                System.out.println("text : " + link.text());
-                textoSeparado = link.text().split(" ");
-//                System.out.println(Arrays.toString(textoSeparado));
-
-                for (String t : textoSeparado) {
-                    for (String p : palavrasReservadas) {
-                        if (t.equals(p)) {
-                            JOptionPane.showMessageDialog(null, "Achei alguma coisa! " + link.attr("href"));
-                        }
-                    }
-                }
-
+        palavrasReservadas.add("Edital");
+        
+        EstruturaAcessoHTML estrutura = new EstruturaAcessoHTML();
+        //estrutura.acesso("http://www.ufal.edu.br/", palavrasReservadas);
+        EstruturaAcessoHTML estrutura2 = new EstruturaAcessoHTML();
+        
+        while(true){
+            estrutura.acesso("http://www.ufal.edu.br/", palavrasReservadas);
+            estrutura2.acesso("http://www.copeve.ufal.br/", palavrasReservadas);
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(HTMLParserExample1.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
+        
     }
-
 }
