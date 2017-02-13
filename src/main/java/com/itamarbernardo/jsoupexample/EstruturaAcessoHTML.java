@@ -18,12 +18,16 @@ import org.jsoup.select.Elements;
  *
  * @author ANAFLAVIA
  */
-public class EstruturaAcessoHTML {
+public class EstruturaAcessoHTML extends Thread implements Runnable{
 
     private String[] textoSeparado;
     private Document doc;
-    private List<String> linksUsados = new ArrayList<String>();
-
+    
+    @Override
+    public void run(){
+        
+    }
+    
     public void acesso(String url, List<String> palavrasReservadas) {
         try {
 
@@ -49,8 +53,7 @@ public class EstruturaAcessoHTML {
                         if (t.equals(p)) {
 
                             JOptionPane.showMessageDialog(null, "Achei alguma coisa! " + link.attr("href") + "\nTexto: " + link.text());
-                            linksUsados.add(link.attr("href"));
-
+                            
                         }
                     }
                 }
