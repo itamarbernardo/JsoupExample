@@ -38,7 +38,7 @@ public class EstruturaAcessoHTML extends Thread implements Runnable {
 
     }
 
-    public void acesso(String url, List<String> palavrasReservadas) {
+    public String acesso(String url, List<String> palavrasReservadas) {
         try {
 
             // need http protocol
@@ -60,7 +60,7 @@ public class EstruturaAcessoHTML extends Thread implements Runnable {
                 for (String t : textoSeparado) {
                     for (String p : palavrasReservadas) {
                         if (t.equals(p)) {
-
+                            
 //                            JOptionPane.showMessageDialog(null, "Achei alguma coisa! " + link.attr("href") + "\nTexto: " + link.text());
                             meusLiks.add(link.attr("href"));
 
@@ -74,19 +74,13 @@ public class EstruturaAcessoHTML extends Thread implements Runnable {
                 for (String m : meusLiks) {
                     linksDoEmail = "\n" + m + linksDoEmail;
                 }
-                Email e = new Email();
-                try {
-                    e.sendEmail("itamarbernardo2013@gmail.com", "Itamar", "Alerta da UFAL: Possível convocação da lista de espera", "Olá Itamar,"
-                            + " nosso sistema verificou uma possível divulgação da lista de espera nos sites requisitados. Por favor, dê"
-                            + " uma olhada nesses links:" + linksDoEmail);
-                } catch (EmailException ex) {
-                    Logger.getLogger(HTMLParserExample1.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
 
             }
-
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return linksDoEmail;
     }
 }
