@@ -31,6 +31,8 @@ public class HTMLParserExample1 {
         palavrasReservadas.add("Lista");
         palavrasReservadas.add("Espera");
         palavrasReservadas.add("espera");
+
+        JOptionPane.showMessageDialog(null, "Programa Rodando!");
                 
         Controlador c = new Controlador(palavrasReservadas);
         c.init();
