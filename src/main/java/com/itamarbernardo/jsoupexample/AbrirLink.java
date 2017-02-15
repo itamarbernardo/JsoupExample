@@ -1,3 +1,5 @@
+package com.itamarbernardo.jsoupexample;
+
 
 import java.awt.Desktop;
 import java.net.URI;
