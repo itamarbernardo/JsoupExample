@@ -74,10 +74,9 @@ public class EstruturaAcessoHTML extends Thread implements Runnable {
                 for (String m : meusLiks) {
                     linksDoEmail = "\n" + m + linksDoEmail;
                 }
-                
-
             }
             
+           
         } catch (IOException e) {
             e.printStackTrace();
         }

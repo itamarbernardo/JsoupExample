@@ -31,7 +31,6 @@ public class HTMLParserExample1 {
         palavrasReservadas.add("Lista");
         palavrasReservadas.add("Espera");
         palavrasReservadas.add("espera");
-        palavrasReservadas.add("1º");
                 
         Controlador c = new Controlador(palavrasReservadas);
         c.init();
