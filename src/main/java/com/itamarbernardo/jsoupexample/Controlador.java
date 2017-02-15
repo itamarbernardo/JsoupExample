@@ -42,7 +42,7 @@ public class Controlador {
         //String links3 = estrutura3.acesso("http://processodeingresso.upe.pe.gov.br/", palavrasReservadas);
 
         String linksTotais = links1 + "\n" + links2;
-        JOptionPane.showMessageDialog(null, linksTotais.length());
+        //JOptionPane.showMessageDialog(null, linksTotais.length());
         if (linksTotais.length() > 1) {
             Email e = new Email();
             try {
