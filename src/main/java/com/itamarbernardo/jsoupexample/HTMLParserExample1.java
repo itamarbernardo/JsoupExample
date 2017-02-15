@@ -23,12 +23,16 @@ public class HTMLParserExample1 {
         List<String> palavrasReservadas = new ArrayList<String>();
         palavrasReservadas.add("Remanejamento");
         palavrasReservadas.add("remanejamento");
+        palavrasReservadas.add("Remanejáveis");
+        palavrasReservadas.add("remanejáveis");
+        palavrasReservadas.add("Remanejaveis");
+        palavrasReservadas.add("remanejaveis");
         palavrasReservadas.add("lista");
         palavrasReservadas.add("Lista");
         palavrasReservadas.add("Espera");
         palavrasReservadas.add("espera");
-        palavrasReservadas.add("Edital");
-        
+        palavrasReservadas.add("1º");
+                
         Controlador c = new Controlador(palavrasReservadas);
         c.init();
         

@@ -38,9 +38,9 @@ public class Controlador {
     public void mandaEmail() {
         String links1 = estrutura.acesso("http://www.ufal.edu.br/", palavrasReservadas);
         String links2 = estrutura2.acesso("http://www.copeve.ufal.br/", palavrasReservadas);
-        String links3 = estrutura3.acesso("http://processodeingresso.upe.pe.gov.br/", palavrasReservadas);
+        //String links3 = estrutura3.acesso("http://processodeingresso.upe.pe.gov.br/", palavrasReservadas);
         
-        String linksTotais = links1 + "\n" + links2 + "\n" + links3;
+        String linksTotais = links1 + "\n" + links2;
         
         Email e = new Email();
                 try {
