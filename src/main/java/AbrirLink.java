@@ -13,7 +13,7 @@ import java.net.URI;
  * @author ANAFLAVIA
  */
 public class AbrirLink {
-    public static void main(String[] args) {
+    public void abrirLink() {
         
         Desktop d = Desktop.getDesktop();
         try{
