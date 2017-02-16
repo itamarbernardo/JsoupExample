@@ -31,8 +31,17 @@ public class Controlador {
     }
 
     public void init() {
-        while (true) {
-            mandaEmail();
+        Hora h = new Hora();
+        if (h.pegarHora() >= 8) {
+            while (true) {
+                mandaEmail();
+            }
+        } else {
+            try {
+                Thread.sleep(3600000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
