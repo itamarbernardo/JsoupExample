@@ -15,52 +15,44 @@ import org.apache.commons.mail.EmailException;
  *
  * @author ANAFLAVIA
  */
-public class Controlador {
+public class Controlador extends Thread implements Runnable {
 
     private List<String> palavrasReservadas;
     private EstruturaAcessoHTML estrutura = new EstruturaAcessoHTML();
-    private EstruturaAcessoHTML estrutura2 = new EstruturaAcessoHTML();
-    private EstruturaAcessoHTML estrutura3 = new EstruturaAcessoHTML();
+    private String endereco;
 
-    public Controlador(List<String> palavrasReservadas) {
+    public Controlador(List<String> palavrasReservadas, String endereco) {
         this.palavrasReservadas = palavrasReservadas;
-        this.estrutura.start();
-        this.estrutura2.start();
-        this.estrutura3.start();
-
+        this.endereco = endereco;
     }
 
-    public void init() {
+    @Override
+    public void run() {
         Hora h = new Hora();
-        if (h.pegarHora() >= 8) {
-            while (true) {
+        int m = h.pegarHora();
+        while (true) {
+            if (m > 8 && m < 21) {
                 mandaEmail();
-            }
-        } else {
-            try {
-                Thread.sleep(3600000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
+
     }
 
     public void mandaEmail() {
-        String links1 = estrutura.acesso("http://www.ufal.edu.br/", palavrasReservadas);
-        String links2 = estrutura2.acesso("http://www.copeve.ufal.br/", palavrasReservadas);
-        //String links3 = estrutura3.acesso("http://processodeingresso.upe.pe.gov.br/", palavrasReservadas);
+        String links1 = estrutura.acesso(endereco, palavrasReservadas);
 
-        String linksTotais = links1 + "\n" + links2;
-        //JOptionPane.showMessageDialog(null, linksTotais.length());
-        if (linksTotais.length() > 1) {
+        if (links1.length() > 1) {
             Email e = new Email();
             try {
                 e.sendEmail("itamarbernardo2013@gmail.com", "Itamar", "Alerta da UFAL: Possível convocação da lista de espera", "Olá Itamar,"
                         + " nosso sistema verificou uma possível divulgação da lista de espera nos sites requisitados. Por favor, dê"
-                        + " uma olhada nesses links:" + linksTotais);
+                        + " uma olhada nesses links:" + links1);
             } catch (EmailException ex) {
                 Logger.getLogger(HTMLParserExample1.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+        } else {
             try {
                 Thread.sleep(7200000); // Duas horas: 7200000
             } catch (InterruptedException ex) {

@@ -5,6 +5,8 @@
  */
 package com.itamarbernardo.jsoupexample;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
@@ -42,5 +44,7 @@ public class Email {
         email.send();
         System.out.println("Email enviado!");
     }
+    
+
 
 }

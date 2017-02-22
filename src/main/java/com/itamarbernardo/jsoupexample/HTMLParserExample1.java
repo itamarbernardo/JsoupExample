@@ -31,10 +31,10 @@ public class HTMLParserExample1 {
         palavrasReservadas.add("Lista");
         palavrasReservadas.add("Espera");
         palavrasReservadas.add("espera");
-        palavrasReservadas.add("Edital");
+        palavrasReservadas.add("Primeira");
 
-        Controlador c = new Controlador(palavrasReservadas);
-        c.init();
+        Controlador c = new Controlador(palavrasReservadas, "http://www.copeve.ufal.br/");
+        c.start();
         
     }
 }

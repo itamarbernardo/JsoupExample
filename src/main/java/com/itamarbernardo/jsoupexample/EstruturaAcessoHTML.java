@@ -21,7 +21,7 @@ import org.jsoup.select.Elements;
  *
  * @author ANAFLAVIA
  */
-public class EstruturaAcessoHTML extends Thread implements Runnable {
+public class EstruturaAcessoHTML{
 
     private String[] textoSeparado;
     private Document doc;
@@ -33,11 +33,6 @@ public class EstruturaAcessoHTML extends Thread implements Runnable {
         this.linksDoEmail = "";
     }
     
-    @Override
-    public void run() {
-
-    }
-
     public String acesso(String url, List<String> palavrasReservadas) {
         try {
 
@@ -61,7 +56,7 @@ public class EstruturaAcessoHTML extends Thread implements Runnable {
                     for (String p : palavrasReservadas) {
                         if (t.equals(p)) {
                             
-//                            JOptionPane.showMessageDialog(null, "Achei alguma coisa! " + link.attr("href") + "\nTexto: " + link.text());
+                            JOptionPane.showMessageDialog(null, "Achei alguma coisa! " + link.attr("href") + "\nTexto: " + link.text());
                             meusLiks.add(link.attr("href"));
 
                         }
