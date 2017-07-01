@@ -31,10 +31,17 @@ public class Controlador extends Thread implements Runnable {
         Hora h = new Hora();
         int m = h.pegarHora();
         while (true) {
-            if (m > 8 && m < 21) {
+            //if (m > 8 && m < 21) {
                 mandaEmail();
 
-            }
+//            }else{
+//              System.out.println("Esperando dar a hora programada...");
+//                try {
+//                    Thread.sleep(60000);
+//                } catch (InterruptedException ex) {
+//                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
         }
 
     }
